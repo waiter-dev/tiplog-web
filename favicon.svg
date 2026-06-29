@@ -6,9 +6,7 @@
     </linearGradient>
   </defs>
   <rect width="64" height="64" rx="15" fill="url(#g)"/>
-  <g stroke="#ffffff" stroke-width="6" stroke-linecap="round" fill="none">
-    <path d="M19 44V31"/>
-    <path d="M32 44V20"/>
-    <path d="M45 44v-8"/>
+  <g transform="translate(8,8) scale(2)" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M6 2v4a2 2 0 0 0 4 0V2M8 2v3M8 8v14M16 2c3 2 3 8 0 10v10"/>
   </g>
 </svg>
