@@ -1,0 +1,79 @@
+<!doctype html>
+<!--
+  TipLog · tiplog.at/get — Smart-Redirect (Visitenkarten-QR)
+  ─────────────────────────────────────────────────────────
+  ▸ Datei als  get.html  ins Root vom Repo  tiplog-web  legen.
+    Cloudflare Pages liefert sie automatisch unter  tiplog.at/get  aus.
+  ▸ ZUM LAUNCH: unten in ZIEL_IOS einfach den App-Store-Link eintragen.
+    Sonst nichts ändern — die gedruckten Karten bleiben gültig.
+-->
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f2f1eb">
+<title>TipLog laden</title>
+<script>
+  // ── Ziele ────────────────────────────────────────────────
+  var ZIEL_IOS = "https://testflight.apple.com/join/Pv9xr2w2"; // Beta · zum Launch: App-Store-URL
+  var ZIEL_WEB = "https://app.tiplog.at";                      // Android, PC & Rest → PWA
+  // ─────────────────────────────────────────────────────────
+  (function () {
+    var ua = navigator.userAgent || "";
+    var iPadNeu = navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1; // iPadOS meldet sich als Mac
+    var istIOS = /iPhone|iPad|iPod/i.test(ua) || iPadNeu;
+    location.replace(istIOS ? ZIEL_IOS : ZIEL_WEB);
+  })();
+</script>
+<style>
+  :root{
+    --paper:#f2f1eb; --bon:#faf9f4; --ink:#1c1b18;
+    --mint:#bfe8cf; --muted:#8b887f;
+  }
+  *{box-sizing:border-box;margin:0}
+  html,body{height:100%}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"DM Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    display:flex; align-items:center; justify-content:center; padding:24px 16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .bon{width:100%;max-width:320px;filter:drop-shadow(0 10px 24px rgba(28,27,24,.10))}
+  .tooth{height:8px;background:conic-gradient(from -135deg at 50% 100%, var(--bon) 90deg, #0000 0) 0 100% / 16px 8px repeat-x}
+  .tooth.unten{background:conic-gradient(from 45deg at 50% 0, var(--bon) 90deg, #0000 0) 0 0 / 16px 8px repeat-x}
+  .body{background:var(--bon);padding:26px 22px 22px;text-align:center}
+  .kopf{font-size:17px;font-weight:500;letter-spacing:.28em;text-indent:.28em}
+  .stern{font-size:10px;letter-spacing:.18em;color:var(--muted);margin:10px 0 0}
+  hr{border:0;border-top:1.5px dashed var(--ink);opacity:.45;margin:16px 0}
+  .frage{font-size:12px;line-height:1.7;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  a.knopf{
+    display:block;margin-top:12px;padding:13px 12px;
+    font:inherit;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--ink);text-decoration:none;border:1.5px solid var(--ink);border-radius:3px;
+  }
+  a.knopf.primaer{background:var(--mint)}
+  a.knopf:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+  .klein{margin-top:14px;font-size:10px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+  .fuss{margin-top:16px;font-size:11px;font-weight:500;letter-spacing:.12em}
+</style>
+</head>
+<body>
+  <!-- Sichtbar nur, wenn die automatische Weiterleitung nicht greift (z. B. JS aus) -->
+  <main class="bon">
+    <div class="tooth" aria-hidden="true"></div>
+    <div class="body">
+      <div class="kopf">🍽️ TIPLOG</div>
+      <p class="stern">* * * APP LADEN * * *</p>
+      <hr>
+      <p class="frage">Automatische Weiterleitung<br>fehlgeschlagen — Gerät wählen:</p>
+      <a class="knopf primaer" href="https://testflight.apple.com/join/Pv9xr2w2">iPhone · Beta laden →</a>
+      <a class="knopf" href="https://app.tiplog.at">Android / PC · Web-App →</a>
+      <p class="klein">Beta über Apple TestFlight (gratis)</p>
+      <hr>
+      <p class="fuss">DANKE FÜR IHREN BESUCH!</p>
+    </div>
+    <div class="tooth unten" aria-hidden="true"></div>
+  </main>
+</body>
+</html>
